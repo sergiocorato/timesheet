@@ -1,4 +1,4 @@
-# Copyright 2019 Tecnativa - Pedro M. Baeza
+# Copyright 2019 Tecnativa -  Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -51,6 +51,7 @@ class SaleOrderLine(models.Model):
                     project = map_so_project[order]
                 else:
                     project = so_line._timesheet_create_project()
+                    so_line.order_id.project_id = project
                     map_so_project[order] = project
             so_line.project_id = project
             so_line._timesheet_create_task(project=project)
